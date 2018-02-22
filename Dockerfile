@@ -1,3 +1,4 @@
+#ues ubuntu image
 FROM ubuntu:16.04
 
 #RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && \
