@@ -1,0 +1,39 @@
+version: "3"
+services:
+  host1:
+    build: .
+    image: ssh-host
+    ports:
+     - "2222:22"
+    networks:
+      dmznet:
+        ipv4_address: 172.19.2.2
+  host2:
+    build: .
+    image: ssh-host
+    networks:
+      dmznet:
+        ipv4_address: 172.19.2.3
+      intranet:
+        ipv4_address:  192.168.4.2
+  host3:
+    build: flag
+    image: endpoint
+    networks:
+      intranet:
+        ipv4_address: 192.168.4.3
+
+networks:
+  dmznet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+       - subnet: 172.19.2.0/24
+  intranet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+       - subnet: 192.168.4.0/24
+    internal: true

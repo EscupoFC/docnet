@@ -1,0 +1,11 @@
+version: "3"
+services:
+
+  ssh-host:
+    build: .
+    image: ssh-host
+    ports:
+     - "2222:22"
+  another:
+    build: .
+    image: ssh-host
